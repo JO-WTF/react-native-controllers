@@ -1,30 +1,29 @@
 'use strict';
 
-var React = require('react-native');
-var {
+import React from 'react';
+import {
   AppRegistry,
   StyleSheet,
   Text,
-  View,
   Image,
   ScrollView,
   TouchableOpacity,
   AlertIOS,
   NativeAppEventEmitter
-} = React;
+} from 'react-native';
 
 var Controllers = require('react-native-controllers');
 
 var FavoritesScreen = React.createClass({
 
-  getInitialState: function() {
-    return({
-      isNavBarHidden : false
-    });
-  },
+	getInitialState: function() {
+		return({
+			isNavBarHidden : false
+		});
+	},
 
-  render: function() {
-    return (
+	render: function() {
+		return (
       <ScrollView style={styles.container}>
 
             <Image style={{width: undefined, height: 100}} source={require('./img/colors.png')} />
@@ -38,7 +37,7 @@ var FavoritesScreen = React.createClass({
             </Text>
 
             {
-              this.props.hidePop ? false :
+							this.props.hidePop ? false :
               <TouchableOpacity onPress={ this.onPopClick }>
                 <Text style={styles.button}>Pop</Text>
               </TouchableOpacity>
@@ -162,328 +161,328 @@ var FavoritesScreen = React.createClass({
 
           </ScrollView>
     );
-  },
+	},
 
-  onPopClick: function() {
-    Controllers.NavigationControllerIOS("favorites_nav").pop();
-  },
+	onPopClick: function() {
+		Controllers.NavigationControllerIOS('favorites_nav').pop();
+	},
 
-  onButtonClick: function(cmd) {
-    switch (cmd) {
-      case 'plain':
-        require('./PushedScreen'); // help the react bundler understand we want this file included
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "Pushed screen",
-          component: "PushedScreen",
-          animated: true
-        });
-        break;
-      case 'navcolors':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          style: {
-            navBarBackgroundColor: '#ffc0c0',
-            navBarButtonColor: '#00a000',
-            navBarTextColor: '#ffff00'
-          }
-        });
-        break;
-      case 'navhidden':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          style: {
-            navBarHidden: true
-          }
-        });
-        break;
-      case 'sethidden':
-          this.state.isNavBarHidden = !this.state.isNavBarHidden;
-        Controllers.NavigationControllerIOS("favorites_nav").setHidden( {
-          hidden: this.state.isNavBarHidden,
-          animated: true //default is true
-        });
-        break;
-      case 'statushidden':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          style: {
-            statusBarHidden: true
-          }
-        });
-        break;
-      case 'toolbarnavigation':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "Extra",
-          component: "ExtraScreen",
-          style: {
-            drawUnderNavBar: true,
-            navBarTranslucent: true,
-            navBarNoBorder: true
-          }
-        });
-        break;
-      case 'lightstatus':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          style: {
-            statusBarTextColorScheme: 'light'
-          }
-        });
-        break;
-        case 'darkstatus':
-          Controllers.NavigationControllerIOS("favorites_nav").push({
-            title: "More",
-            component: "FavoritesScreen",
-            style: {
-              statusBarTextColorScheme: 'dark'
-            }
-          });
-          break;
-      case 'navstatushidden':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          style: {
-            navBarHidden: true,
-            statusBarHideWithNavBar: true
-          }
-        });
-        break;
-      case 'navnothidden':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          style: {
-            navBarHidden: false
-          }
-        });
-        break;
-      case 'navscrollhidden':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          style: {
-            navBarHideOnScroll: true
-          }
-        });
-        break;
-      case 'navstatusscrollhidden':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          style: {
-            navBarHideOnScroll: true,
-            statusBarHideWithNavBar: true
-          }
-        });
-        break;
-      case 'tabhidden':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          style: {
-            tabBarHidden: true
-          }
-        });
-        break;
-      case 'tabnothidden':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          style: {
-            tabBarHidden: false
-          }
-        });
-        break;
-      case 'undernav':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          style: {
-            drawUnderNavBar: true,
-            navBarTranslucent: true,
-            drawUnderTabBar: false
-          }
-        });
-        break;
-      case 'undertab':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          style: {
-            drawUnderNavBar: false,
-            drawUnderTabBar: true
-          }
-        });
-        break;
-      case 'underboth':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          style: {
-            drawUnderNavBar: true,
-            navBarTranslucent: true,
-            drawUnderTabBar: true
-          }
-        });
-        break;
-      case 'blurstatus':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          style: {
-            statusBarBlur: true,
-            navBarHidden: true
-          }
-        });
-        break;
-      case 'blurnav':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          style: {
-            navBarBlur: true,
-            drawUnderNavBar: true
-          }
-        });
-        break;
-      case 'backnotext':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          backButtonTitle: ""
-        });
-        break;
-      case 'backcustomtext':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          backButtonTitle: "Hello"
-        });
-        break;
-      case 'backhidden':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          backButtonHidden: true
-        });
-        break;
-      case 'rightbuttons':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          rightButtons: [
-            {
-              title: "Edit",
-              onPress: function() {
-                AlertIOS.alert('Button', 'Edit pressed');
-              }
-            },
-            {
-              title: "Save",
-              onPress: function() {
-                AlertIOS.alert('Button', 'Save pressed');
-              }
-            }
-          ]
-        });
-        break;
-      case 'rightbuttonsdisabled':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          rightButtons: [
-            {
-              title: "Edit",
-              disabled: true
-            },
-            {
-              title: "Save",
-              onPress: function() {
-                AlertIOS.alert('Button', 'Save pressed');
-              }
-            }
-          ]
-        });
-        break;
-      case 'righticonbuttons':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          rightButtons: [
-            {
-              icon: require('./img/navicon_edit.png'),
-              onPress: function() {
-                AlertIOS.alert('Button', 'Edit pressed');
-              }
-            },
-            {
-              icon: require('./img/navicon_add.png'),
-              onPress: function() {
-                AlertIOS.alert('Button', 'Add pressed');
-              },
-              testID: "e2erules"
-            }
-          ]
-        });
-        break;
-      case 'eventbuttons':
-        const eventId = 'MY_UNIQUE_EVENT_ID';
-        NativeAppEventEmitter.addListener(eventId, function (event) {
-          switch (event.id) {
-            case 'edit':
-              AlertIOS.alert('Button', 'Edit pressed');
-              break;
-            case 'add':
-              AlertIOS.alert('Button', 'Add pressed');
-              break;
-          }
-        });
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          component: "FavoritesScreen",
-          rightButtons: [
-            {
-              icon: require('./img/navicon_edit.png'),
-              id: 'edit',
-              onPress: eventId
-            },
-            {
-              icon: require('./img/navicon_add.png'),
-              id: 'add',
-              onPress: eventId
-            }
-          ]
-        });
-        break;
-      case 'titleImage':
-        Controllers.NavigationControllerIOS("favorites_nav").push({
-          title: "More",
-          titleImage: require('./img/turtle.png'),
-          component: "FavoritesScreen"
-        });
-        break;
-    }
-  },
+	onButtonClick: function(cmd) {
+		switch (cmd) {
+		case 'plain':
+			require('./PushedScreen'); // help the react bundler understand we want this file included
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'Pushed screen',
+				component: 'PushedScreen',
+				animated: true
+			});
+			break;
+		case 'navcolors':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				style: {
+					navBarBackgroundColor: '#ffc0c0',
+					navBarButtonColor: '#00a000',
+					navBarTextColor: '#ffff00'
+				}
+			});
+			break;
+		case 'navhidden':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				style: {
+					navBarHidden: true
+				}
+			});
+			break;
+		case 'sethidden':
+			this.setState(this.state.isNavBarHidden, !this.state.isNavBarHidden);
+			Controllers.NavigationControllerIOS('favorites_nav').setHidden( {
+				hidden: this.state.isNavBarHidden,
+				animated: true //default is true
+			});
+			break;
+		case 'statushidden':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				style: {
+					statusBarHidden: true
+				}
+			});
+			break;
+		case 'toolbarnavigation':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'Extra',
+				component: 'ExtraScreen',
+				style: {
+					drawUnderNavBar: true,
+					navBarTranslucent: true,
+					navBarNoBorder: true
+				}
+			});
+			break;
+		case 'lightstatus':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				style: {
+					statusBarTextColorScheme: 'light'
+				}
+			});
+			break;
+		case 'darkstatus':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				style: {
+					statusBarTextColorScheme: 'dark'
+				}
+			});
+			break;
+		case 'navstatushidden':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				style: {
+					navBarHidden: true,
+					statusBarHideWithNavBar: true
+				}
+			});
+			break;
+		case 'navnothidden':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				style: {
+					navBarHidden: false
+				}
+			});
+			break;
+		case 'navscrollhidden':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				style: {
+					navBarHideOnScroll: true
+				}
+			});
+			break;
+		case 'navstatusscrollhidden':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				style: {
+					navBarHideOnScroll: true,
+					statusBarHideWithNavBar: true
+				}
+			});
+			break;
+		case 'tabhidden':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				style: {
+					tabBarHidden: true
+				}
+			});
+			break;
+		case 'tabnothidden':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				style: {
+					tabBarHidden: false
+				}
+			});
+			break;
+		case 'undernav':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				style: {
+					drawUnderNavBar: true,
+					navBarTranslucent: true,
+					drawUnderTabBar: false
+				}
+			});
+			break;
+		case 'undertab':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				style: {
+					drawUnderNavBar: false,
+					drawUnderTabBar: true
+				}
+			});
+			break;
+		case 'underboth':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				style: {
+					drawUnderNavBar: true,
+					navBarTranslucent: true,
+					drawUnderTabBar: true
+				}
+			});
+			break;
+		case 'blurstatus':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				style: {
+					statusBarBlur: true,
+					navBarHidden: true
+				}
+			});
+			break;
+		case 'blurnav':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				style: {
+					navBarBlur: true,
+					drawUnderNavBar: true
+				}
+			});
+			break;
+		case 'backnotext':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				backButtonTitle: ''
+			});
+			break;
+		case 'backcustomtext':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				backButtonTitle: 'Hello'
+			});
+			break;
+		case 'backhidden':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				backButtonHidden: true
+			});
+			break;
+		case 'rightbuttons':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				rightButtons: [
+					{
+						title: 'Edit',
+						onPress: function() {
+							AlertIOS.alert('Button', 'Edit pressed');
+						}
+					},
+					{
+						title: 'Save',
+						onPress: function() {
+							AlertIOS.alert('Button', 'Save pressed');
+						}
+					}
+				]
+			});
+			break;
+		case 'rightbuttonsdisabled':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				rightButtons: [
+					{
+						title: 'Edit',
+						disabled: true
+					},
+					{
+						title: 'Save',
+						onPress: function() {
+							AlertIOS.alert('Button', 'Save pressed');
+						}
+					}
+				]
+			});
+			break;
+		case 'righticonbuttons':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				rightButtons: [
+					{
+						icon: require('./img/navicon_edit.png'),
+						onPress: function() {
+							AlertIOS.alert('Button', 'Edit pressed');
+						}
+					},
+					{
+						icon: require('./img/navicon_add.png'),
+						onPress: function() {
+							AlertIOS.alert('Button', 'Add pressed');
+						},
+						testID: 'e2erules'
+					}
+				]
+			});
+			break;
+		case 'eventbuttons':
+			const eventId = 'MY_UNIQUE_EVENT_ID';
+			NativeAppEventEmitter.addListener(eventId, function (event) {
+				switch (event.id) {
+				case 'edit':
+					AlertIOS.alert('Button', 'Edit pressed');
+					break;
+				case 'add':
+					AlertIOS.alert('Button', 'Add pressed');
+					break;
+				}
+			});
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				component: 'FavoritesScreen',
+				rightButtons: [
+					{
+						icon: require('./img/navicon_edit.png'),
+						id: 'edit',
+						onPress: eventId
+					},
+					{
+						icon: require('./img/navicon_add.png'),
+						id: 'add',
+						onPress: eventId
+					}
+				]
+			});
+			break;
+		case 'titleImage':
+			Controllers.NavigationControllerIOS('favorites_nav').push({
+				title: 'More',
+				titleImage: require('./img/turtle.png'),
+				component: 'FavoritesScreen'
+			});
+			break;
+		}
+	}
 
 });
 
 var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F5FCFF'
-  },
-  button: {
-    textAlign: 'center',
-    fontSize: 18,
-    marginBottom: 10,
-    marginTop:10,
-    color: 'blue'
-  }
+	container: {
+		flex: 1,
+		backgroundColor: '#F5FCFF'
+	},
+	button: {
+		textAlign: 'center',
+		fontSize: 18,
+		marginBottom: 10,
+		marginTop:10,
+		color: 'blue'
+	}
 });
 
 AppRegistry.registerComponent('FavoritesScreen', () => FavoritesScreen);

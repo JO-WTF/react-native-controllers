@@ -1,13 +1,13 @@
 'use strict';
 
-var React = require('react-native');
-var {
+import React from 'react';
+import {
   AppRegistry,
   StyleSheet,
   Text,
   View,
   TouchableOpacity
-} = React;
+} from 'react-native';
 
 var Controllers = require('react-native-controllers');
 var {

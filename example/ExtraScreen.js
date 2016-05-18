@@ -1,7 +1,7 @@
 'use strict';
 
-var React = require('react-native');
-var {
+import React from 'react';
+import {
 	AppRegistry,
 	StyleSheet,
 	Text,
@@ -10,17 +10,14 @@ var {
 	ScrollView,
 	TouchableHighlight,
 	TouchableOpacity,
-	AlertIOS,
-	NativeAppEventEmitter,
-	requireNativeComponent,
 	SegmentedControlIOS,
 	Dimensions,
 	TextInput
-} = React;
+} from 'react-native';
 
 var Controllers = require('react-native-controllers');
 const {NavigationToolBarIOS} = Controllers;
-var {height, width} = Dimensions.get('window');
+var width = Dimensions.get('window').width;
 
 
 
@@ -40,7 +37,7 @@ var ExtraScreen = React.createClass({
 
 				<ScrollView style={styles.container} >
 					<Image style={ styles.image }
-					       source={require('./img/colors.png')} />
+						source={require('./img/colors.png')} />
 
 					<Text style={styles.textInList}
 					>
@@ -53,7 +50,7 @@ var ExtraScreen = React.createClass({
 					</TouchableOpacity>
 
 					<Image style={styles.image}
-					       source={require('./img/colors.png')} />
+						source={require('./img/colors.png')} />
 
 					<Text style={styles.textInList}
 					>
@@ -61,7 +58,7 @@ var ExtraScreen = React.createClass({
 					</Text>
 
 					<Image style={styles.image}
-					       source={require('./img/colors.png')} />
+						source={require('./img/colors.png')} />
 
 				</ScrollView>
 				{this.renderToolBar()}
@@ -73,19 +70,19 @@ var ExtraScreen = React.createClass({
 		if (this.state.renderOnToolBar === 'segmented') {
 			return (
 				<NavigationToolBarIOS key='segmented' translucent={true}
-			                style={styles.toolBarStyle}>
+					style={styles.toolBarStyle}>
 
 					<SegmentedControlIOS
 						values={['One', 'Two', 'Three']}
 						selectedIndex={this.state.segmentIndexSelected}
 						style={styles.segmentedControl}
 						onChange={(event) => {
-								                this.setState({segmentIndexSelected : event.nativeEvent.selectedSegmentIndex});
+							this.setState({segmentIndexSelected : event.nativeEvent.selectedSegmentIndex});
 						}}
 					/>
 					<View style={styles.lineBorder}/>
 				</NavigationToolBarIOS>
-			)
+			);
 		} else if(this.state.renderOnToolBar === 'search') {
 			return (
 				<NavigationToolBarIOS key='search' style={styles.toolBarStyle}>
@@ -104,22 +101,22 @@ var ExtraScreen = React.createClass({
 					</View>
 					<View style={styles.lineBorder}/>
 				</NavigationToolBarIOS>
-			)
+			);
 		}
 	},
 
 	onPopClick: function() {
-		Controllers.NavigationControllerIOS("favorites_nav").pop();
+		Controllers.NavigationControllerIOS('favorites_nav').pop();
 	},
 
 	onButtonClick: function(cmd) {
 		switch (cmd) {
-			case 'surprise':
-				this.setState({renderOnToolBar: (this.state.renderOnToolBar === 'search') ? 'segmented' : 'search'});
-				break;
+		case 'surprise':
+			this.setState({renderOnToolBar: (this.state.renderOnToolBar === 'search') ? 'segmented' : 'search'});
+			break;
 
 		}
-	},
+	}
 
 });
 
@@ -155,7 +152,7 @@ var styles = StyleSheet.create({
 		top: 44,
 		width: width,
 		height: 64,
-		position: 'absolute',
+		position: 'absolute'
 	},
 	textInput: {
 		width: width*0.87,
@@ -184,7 +181,7 @@ var styles = StyleSheet.create({
 		marginBottom: 8,
 		marginLeft: 8,
 		marginRight: 8,
-		marginTop: 28,
+		marginTop: 28
 	},
 	lineBorder: {
 		height:0.5,
